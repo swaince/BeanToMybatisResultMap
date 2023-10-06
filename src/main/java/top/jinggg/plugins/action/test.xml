@@ -1,0 +1,26 @@
+<resultMap id="唯一标识" type="映射的entity对象的绝对路径">
+    <id column="表主键字段" jdbcType="字段类型" property="映射entity对象的主键属性" />
+
+    <result column="表某个字段" jdbcType="字段类型" property="映射entity对象的某个属性"/>
+
+    <!-- 指的是entity对象中的对象属性 -->
+    <association property="entity中某个对象属性" javaType="这个对象的绝对路径">
+        <id column="这个对象属性对应的表的主键字段" jdbcType="字段类型" property="这个对象属性内的主键属性"/>
+        <result column="表某个字段" jdbcType="字段类型" property="这个对象属性内的某个属性"/>
+    </association>
+
+    <!-- 指的是entity对象中的集合属性 -->
+    <collection property="entity中的某个集合属性" ofType="这个集合泛型所存实体类的绝对路径">
+        <id column="这个集合属性中泛型所存实体类对象对应表的主键字段" jdbcType="字段类型"
+            property="这个集合属性中泛型所存实体类对象的主键属性"
+        />
+        <result column="表某个字段" jdbcType="字段类型"
+                property="这个集合属性泛型所存实体类对象的属性"
+        />
+    </collection>
+
+    <!-- 引用另一个resultMap (套娃) -->
+    <collection property="entity中的某个集合属性"
+                resultMap="这个引用的resultMap的type,就是这个集合属性泛型所存实体类的绝对路径"
+    />
+</resultMap>
